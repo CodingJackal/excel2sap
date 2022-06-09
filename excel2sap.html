@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>	<head>
+	<title>Area 51
+	</title>
+	<style>
+	#container {
+		display: flex;
+    flex-direction: column;
+		background: lightgreen;
+		}
+	#item {
+		display: flex;
+    width: 700px;
+    margin: 10px;
+    padding: 10px;
+		border: solid;
+		justify-content: center;
+    background: lightblue;
+    align-self: center;
+		}
+	#inputBox {
+  	display: flex;
+    justify-content: center;
+		padding: 10px;
+	}
+	#controlBox {
+		display: flex;
+    justify-content: center;
+		background: lightgrey;
+		padding: 10px;		
+	}
+	#outputBox {
+		display: flex;
+    justify-content: center;
+		background: lightgrey;
+		padding: 10px;		
+	}
+	
+	</style>
+	</head>
+	<body>
+		<div id="container">
+		<div id="item"><input type=button id="countBtn" value="Fire!"></div>
+		<div id="inputBox">
+			<textarea id="txtarea" rows="20" cols="100"></textarea>
+		</div>
+		<div id="controlBox"></div>
+		<div id="outputBox"></div>
+		</div>
+		<!-- <span>67413711&#09;42120000&#09;100&#09;EUR&#09;67423712&#10;</span> -->
+		<script src="excel2sap.js"></script>
+	</body>
+
+</html>
