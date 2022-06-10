@@ -14,40 +14,9 @@ function findBetragIndex(objects) {
 }
 
 function createOutput(objects, betragIndex) {	
-// 	let table = document.createElement("table");		
-// 	document.getElementById("outputBox").appendChild(table);
-
-//   for (var i = 0; i < objects.length; i++) {	
-//     let tr = document.createElement("tr");
-//     table.appendChild(tr);
-	
-// 	if (objects[i].betrag == "0,00") {
-// 		continue;
-// 	}
-
-//     let td1 = document.createElement("td");
-// 	let td2 = document.createElement("td");
-// 	let td3 = document.createElement("td");
-// 	let td4 = document.createElement("td");
-// 	let td5 = document.createElement("td");
-// 	let td6 = document.createElement("td");
-// 	td1.innerHTML = objects[i].kostenstelleAlt;
-//     td2.innerHTML = objects[i].iaAlt;
-// 	td3.innerHTML = objects[i].kostenart;
-// 	td4.innerHTML = objects[i].betrag;
-// 	td5.innerHTML = objects[i].eur;
-// 	td6.innerHTML = objects[i].kostenstelleNeu;
-// 	tr.appendChild(td1);
-// 	tr.appendChild(td2);
-// 	tr.appendChild(td3);
-// 	tr.appendChild(td4);
-// 	tr.appendChild(td5);
-// 	tr.appendChild(td6);
-//   }
-
 	let outputArea = document.createElement("textarea");
 	let superString = "";
-	let removedRows = 0; // Ungenutzt
+	let removedRows = 0; 
 	let summe = 0;
 	
   outputArea.setAttribute("cols", "100");
@@ -55,21 +24,30 @@ function createOutput(objects, betragIndex) {
 	outputArea.setAttribute("id", "outputArea");
 	
 	for (let i = 0; i < objects.length; i++) {
-		summe += parseFloat(objects[i][betragIndex].replace(",","."));
+		let tmpTest = objects[i]["0"];
+		let count = 0;
+		Object.values(objects[i]).forEach(val =>
+			(val == tmpTest) ? count++ : count + 0);
 
 		if (objects[i][betragIndex] == "0,00") {
 			removedRows++;
 			continue;
+		} else if (count > 1) {
+			removedRows++;
+			continue;
 		}
+		
+		summe += parseFloat(objects[i][betragIndex].replace(".","").replace(",","."));
+		
 		Object.values(objects[i]).forEach(val => 
 							superString = superString.concat(val + "\t"));
 		superString = superString.slice(0, -1) + "\n";
 	}
 	
-	outputArea.value = superString;	
+	outputArea.value = superString;
+	document.getElementById("controlBox").innerHTML = `Summe: ${summe.toLocaleString("de-DE")}<br>Entfernte Zeilen: ${removedRows}`;
 	document.getElementById("outputBox").appendChild(outputArea);
 	outputArea.select();
-	alert(summe);
 }
 
 function clickButton() {
@@ -89,8 +67,6 @@ function clickButton() {
 		objArray.push(tmpObj);
 	}
 	betragIndex = findBetragIndex(objArray);
-
-	document.getElementById("controlBox").innerHTML = parseFloat("2,5".replace(",",".")) * 10;
 	createOutput(objArray, betragIndex);
 }
 
