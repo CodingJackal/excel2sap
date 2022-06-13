@@ -14,14 +14,10 @@ function findBetragIndex(objects) {
 }
 
 function createOutput(objects, betragIndex) {	
-	let outputArea = document.createElement("textarea");
+	const outputArea = document.getElementById("outputArea");
 	let superString = "";
 	let removedRows = 0; 
 	let summe = 0;
-	
-  outputArea.setAttribute("cols", "100");
-  outputArea.setAttribute("rows", "20");
-	outputArea.setAttribute("id", "outputArea");
 	
 	for (let i = 0; i < objects.length; i++) {
 		let tmpTest = objects[i]["0"];
@@ -45,14 +41,14 @@ function createOutput(objects, betragIndex) {
 	}
 	
 	outputArea.value = superString;
-	document.getElementById("controlBox").innerHTML = `Summe: ${summe.toLocaleString("de-DE")}<br>Entfernte Zeilen: ${removedRows}`;
-	document.getElementById("outputBox").appendChild(outputArea);
+	document.getElementById("statusBox").innerHTML = `Summe: ${summe.toLocaleString("de-DE")}<br>Entfernte Zeilen: ${removedRows}`;
+	outputArea.readOnly = true;
 	outputArea.select();
 }
 
 function clickButton() {
-	const textArea = document.querySelector("textarea");
-	const text = textArea.value;
+	const inputArea = document.getElementById("inputArea");
+	const text = inputArea.value;
 	let textArray = text.split("\n");
 	let objArray = [];
 	let betragIndex = null;
@@ -60,7 +56,7 @@ function clickButton() {
 	for (let i = 0; i < textArray.length; i++) {
 		let tmpRowArray = textArray[i].split("\t");
 		let tmpObj = {};
-
+		// Ein normales Array haette es wahrscheinlich auch getan...
 		for (let i = 0; i < tmpRowArray.length; i++) {
 			tmpObj[i] = tmpRowArray[i];
 		}
@@ -70,7 +66,6 @@ function clickButton() {
 	createOutput(objArray, betragIndex);
 }
 
-const control = document.getElementById('controlBox');
 const buttons = container.querySelectorAll('input');
 
 buttons.forEach(function(btn) {

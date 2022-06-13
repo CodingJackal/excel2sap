@@ -5,12 +5,16 @@
 	<style>
 	#container {
 		display: flex;
-    flex-direction: column;
+    flex-direction: default;
 		background: lightgreen;
 		}
-	#item {
+  #left {
 		display: flex;
-    width: 700px;
+		flex-direction: column;
+		width: 200px;
+	}
+	#item {
+		display: flex;    
     margin: 10px;
     padding: 10px;
 		border: solid;
@@ -23,7 +27,7 @@
     justify-content: center;
 		padding: 10px;
 	}
-	#controlBox {
+	#statusBox {
 		display: flex;
     justify-content: center;
 		background: lightgrey;
@@ -32,7 +36,7 @@
 	#outputBox {
 		display: flex;
     justify-content: center;
-		background: lightgrey;
+		background: lightblue;
 		padding: 10px;		
 	}
 	
@@ -40,14 +44,15 @@
 	</head>
 	<body>
 		<div id="container">
-		<div id="item"><input type=button id="countBtn" value="Fire!"></div>
+			<div id="left">
+				<div id="item"><input type=button id="countBtn" value="Fire!"></div>
+				<div id="statusBox"></div>
+			</div>
 		<div id="inputBox">
-			<textarea id="txtarea" rows="20" cols="100"></textarea>
-		</div>
-		<div id="controlBox"></div>
-		<div id="outputBox"></div>
-		</div>
-		<!-- <span>67413711&#09;42120000&#09;100&#09;EUR&#09;67423712&#10;</span> -->
+			<textarea id="inputArea" rows="20" cols="100"></textarea>
+		</div>		
+		<div id="outputBox"><textarea id="outputArea" rows="20" cols="100"></textarea></div>
+		</div>		
 		<script src="excel2sap.js"></script>
 	</body>
 
