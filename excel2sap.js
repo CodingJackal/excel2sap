@@ -14,7 +14,7 @@ function findBetragIndex(objects) {
 }
 
 function createOutput(objects, betragIndex) {	
-	const outputArea = document.getElementById("outputArea");
+	
 	let superString = "";
 	let removedRows = 0; 
 	let summe = 0;
@@ -41,13 +41,12 @@ function createOutput(objects, betragIndex) {
 	}
 	
 	outputArea.value = superString;
-	document.getElementById("statusBox").innerHTML = `Summe: ${summe.toLocaleString("de-DE")}<br>Entfernte Zeilen: ${removedRows}`;
+	statusBox.innerHTML = `Summe: ${summe.toLocaleString("de-DE")}<br>Entfernte Zeilen: ${removedRows}`;
 	outputArea.readOnly = true;
 	outputArea.select();
 }
 
 function clickButton() {
-	const inputArea = document.getElementById("inputArea");
 	const text = inputArea.value;
 	let textArray = text.split("\n");
 	let objArray = [];
@@ -66,9 +65,18 @@ function clickButton() {
 	createOutput(objArray, betragIndex);
 }
 
-const buttons = container.querySelectorAll('input');
+function resetButton() {
+	inputArea.value = "Bitte Exceldaten hier einfügen.";
+	statusBox.innerHTML = "";
+	outputArea.value = "";
+	outputArea.readOnly = true;
+}
 
-buttons.forEach(function(btn) {
-		const parent = btn.parentNode;
-		btn.addEventListener("click", clickButton);
-});
+const inputArea = document.getElementById("inputArea");
+const outputArea = document.getElementById("outputArea");
+const statusBox = document.getElementById("statusBox");
+const removeBtn = document.getElementById("countBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+removeBtn.addEventListener("click", clickButton);
+resetBtn.addEventListener("click", resetButton);

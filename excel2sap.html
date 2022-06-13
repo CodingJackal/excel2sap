@@ -1,12 +1,15 @@
 <!DOCTYPE HTML>
-<html>	<head>
-	<title>Area 51
-	</title>
+<html lang="de">	
+	<head>
+	<meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>excel2sap</title>
 	<style>
 	#container {
 		display: flex;
     flex-direction: default;
-		background: lightgreen;
+		
 		}
   #left {
 		display: flex;
@@ -14,27 +17,26 @@
 		width: 200px;
 	}
 	#item {
-		display: flex;    
-    margin: 10px;
-    padding: 10px;
-		border: solid;
+		display: flex;        
+    padding: 20px;
 		justify-content: center;
-    background: lightblue;
     align-self: center;
 		}
 	#inputBox {
   	display: flex;
+		flex-direction: column;
     justify-content: center;
 		padding: 10px;
+		background: lightgreen;
 	}
 	#statusBox {
 		display: flex;
     justify-content: center;
-		background: lightgrey;
 		padding: 10px;		
 	}
 	#outputBox {
 		display: flex;
+		flex-direction: column;
     justify-content: center;
 		background: lightblue;
 		padding: 10px;		
@@ -45,13 +47,18 @@
 	<body>
 		<div id="container">
 			<div id="left">
-				<div id="item"><input type=button id="countBtn" value="Fire!"></div>
+				<div id="item"><input type=button id="countBtn" value="Entferne Zeilen"></div>
+				<div id="item"><input type=button id="resetBtn" value="Reset"></div>
 				<div id="statusBox"></div>
 			</div>
+			
 		<div id="inputBox">
-			<textarea id="inputArea" rows="20" cols="100"></textarea>
+			<h1>Excel</h1>
+			<textarea id="inputArea" rows="20" cols="100">Bitte Exceldaten hier einfügen.</textarea>
 		</div>		
-		<div id="outputBox"><textarea id="outputArea" rows="20" cols="100"></textarea></div>
+		<div id="outputBox">
+			<h1>SAP</h1>
+			<textarea id="outputArea" rows="20" cols="100"></textarea></div>
 		</div>		
 		<script src="excel2sap.js"></script>
 	</body>
